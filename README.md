@@ -35,3 +35,8 @@ authorities, researchers, and the general public.
 
 ## Contributors
 
+- [Chanula Deshan](https://github.com/chanula12345)
+- [Devindi Tharushika](https://github.com/devinditharushika)
+- [Ishini](https://github.com/ishini2003)
+
+
