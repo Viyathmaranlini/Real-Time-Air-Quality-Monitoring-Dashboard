@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All Sensors</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body style="background:#eaf4e8;">
+  <header class="navbar">
+    <div class="title">AirQ Sensors</div>
+    <div>
+      <a href="history.html" class="logout-btn">History</a>
+      <button id="logoutBtn" class="logout-btn">Log Out</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <a href="dashboard.html" class="btn btn-danger" style="font-weight:bold;">← Back to Dashboard</a>
+      <button id="simulateBtn" class="simulate-btn">Simulate AQI Data</button>
+    </div>
+
+    <div id="sensorList" class="card-list"></div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script>
+    const token = localStorage.getItem('token');
+    if (!token) window.location.href = 'login.html';
+
+    document.getElementById('logoutBtn').onclick = () => {
+      fetch('http://127.0.0.1:8000/api/logout', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` },
+      }).then(() => {
+        localStorage.removeItem('token');
+        window.location.href = 'login.html';
+      });
+    };
+
+    document.getElementById('simulateBtn').onclick = () => {
+      fetch('http://127.0.0.1:8000/api/simulate', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` },
+      })
+        .then(res => res.json())
+        .then(data => {
+          alert(data.message);
+          loadSensors();
+        });
+    };
+
+    function loadSensors() {
+      fetch('http://127.0.0.1:8000/api/sensors', {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+        .then(res => res.json())
+        .then(sensors => {
+          const list = document.getElementById('sensorList');
+          list.innerHTML = '';
+
+          sensors.forEach(sensor => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+              <h3>${sensor.name}</h3>
+              <p><strong>Location:</strong> ${sensor.location_description || 'N/A'}</p>
+              <p><strong>Lat:</strong> ${sensor.latitude}, <strong>Lng:</strong> ${sensor.longitude}</p>
+              <p><strong>AQI:</strong> <span id="aqi-${sensor.id}" class="badge badge-na">Loading...</span></p>
+              <canvas id="chart-${sensor.id}" height="100"></canvas>
+            `;
+            list.appendChild(card);
+
+            fetch(`http://127.0.0.1:8000/api/sensors/${sensor.id}/history`, {
+              headers: { Authorization: `Bearer ${token}` },
+            })
+              .then(res => res.json())
+              .then(history => {
+                const values = history.map(h => h.aqi_value);
+                const labels = history.map(h => new Date(h.recorded_at).toLocaleTimeString());
+
+                const latest = values.at(-1);
+                const badge = document.getElementById(`aqi-${sensor.id}`);
+                badge.textContent = latest;
+
+                if (latest > 150) badge.className = 'badge badge-unhealthy';
+                else if (latest > 100) badge.className = 'badge badge-moderate';
+                else badge.className = 'badge badge-good';
+
+                const ctx = document.getElementById(`chart-${sensor.id}`).getContext('2d');
+                new Chart(ctx, {
+                  type: 'line',
+                  data: {
+                    labels,
+                    datasets: [{
+                      label: 'AQI',
+                      data: values,
+                      borderColor: '#1976d2',
+                      backgroundColor: 'rgba(25, 118, 210, 0.2)',
+                      fill: true,
+                      tension: 0.3
+                    }]
+                  },
+                  options: {
+                    scales: {
+                      y: { beginAtZero: true },
+                      x: { title: { display: true, text: 'Time' } }
+                    },
+                    plugins: { legend: { display: false } }
+                  }
+                });
+              });
+          });
+        });
+    }
+
+    loadSensors();
+  </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+body {
+    background-color: #d1f5ff;
+    font-family: "Segoe UI", sans-serif;
+  }
+  
+  .main-container {
+    max-width: 1400px;
+    margin: auto;
+  }
+  
+  .map-container {
+    height: 400px;
+    width: 100%;
+  }
+  
+  .sensor-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  .sensor-card h6 {
+    font-weight: bold;
+  }
+  
+  .badge {
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.85rem;
+  }
+  
+  .badge-na {
+    background: #999;
+    color: white;
+  }
+  
+  .badge-good {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .badge-moderate {
+    background-color: #ff9800;
+    color: white;
+  }
+  
+  .badge-unhealthy {
+    background-color: #f44336;
+    color: white;
+  }

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin - Users</title>
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+  <div class="admin-container">
+    <aside class="sidebar">
+      <h2>AirQ Admin</h2>
+      <nav>
+        <a href="admin-dashboard.html">Dashboard</a>
+        <a href="users.html" class="active">Users</a>
+        <a href="sensors.html">Sensors</a>
+        <a href="logs.html">System Logs</a>
+        <a href="#" id="logoutBtn">Logout</a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <div class="header">
+        <h1>User Management</h1>
+        <button id="addUserBtn">+ Add User</button>
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Registered At</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="userTableBody">
+          <!-- Loaded via JS -->
+        </tbody>
+      </table>
+    </main>
+  </div>
+
+  <!-- User Modal -->
+  <div id="userModal" class="modal hidden">
+    <div class="modal-content">
+      <h3 id="modalTitle">Add User</h3>
+      <form id="userForm">
+        <input type="hidden" id="userId" />
+        <input type="text" id="userName" placeholder="Full Name" required />
+        <input type="email" id="userEmail" placeholder="Email" required />
+        <input type="password" id="userPassword" placeholder="Password" required />
+        <select id="userRole">
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
+        <button type="submit">Save</button>
+        <button type="button" onclick="closeUserModal()">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

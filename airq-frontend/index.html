@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Welcome to AirQ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .welcome-container {
+      text-align: center;
+      padding: 4rem 2rem;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .welcome-container h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .welcome-container p {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      color: #666;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .btn-group a {
+      text-decoration: none;
+      background-color: #4c84e2;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .btn-group a:hover {
+      background-color: #3768c4;
+    }
+  </style>
+</head>
+<body>
+  <div class="welcome-container">
+    <h1>Welcome to AirQ Dashboard</h1>
+    <p>Monitor, simulate and analyze Air Quality Index data across multiple sensors in real time.</p>
+
+    <div class="btn-group">
+      <a href="login.html">Login</a>
+      <a href="register.html">Register</a>
+    </div>
+  </div>
+
+  <script>
+    const token = localStorage.getItem('token');
+    if (token) {
+      // Auto-redirect to dashboard if already logged in
+      window.location.href = 'dashboard.html';
+    }
+  </script>
+</body>
+</html>

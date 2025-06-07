@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AQI History</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="title">AQI History</div>
+    <a href="dashboard.html" class="logout-btn">← Back to Dashboard</a>
+  </header>
+
+  <main class="container">
+    <h2>Sensor History</h2>
+
+    <div class="filter-bar">
+      <select id="sensorSelect"></select>
+      <button onclick="exportCSV()">Export CSV</button>
+      <button onclick="exportPDF()">Export PDF</button>
+    </div>
+
+    <div class="card">
+      <canvas id="historyChart" height="120"></canvas>
+    </div>
+  </main>
+
+  <script>
+    const token = localStorage.getItem('token');
+    if (!token) window.location.href = 'login.html';
+
+    let currentHistory = [];
+    let currentSensorName = '';
+
+    function loadSensors() {
+      fetch('http://127.0.0.1:8000/api/sensors', {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      .then(res => res.json())
+      .then(sensors => {
+        const selector = document.getElementById('sensorSelect');
+        selector.innerHTML = sensors.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
+        currentSensorName = sensors[0]?.name || '';
+        loadHistory(sensors[0]?.id);
+        selector.onchange = () => {
+          const selected = selector.value;
+          currentSensorName = selector.options[selector.selectedIndex].text;
+          loadHistory(selected);
+        };
+      });
+    }
+
+    function loadHistory(sensorId) {
+      fetch(`http://127.0.0.1:8000/api/sensors/${sensorId}/history`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      .then(res => res.json())
+      .then(history => {
+        currentHistory = history;
+        const labels = history.map(h => new Date(h.recorded_at).toLocaleString());
+        const values = history.map(h => h.aqi_value);
+
+        const ctx = document.getElementById('historyChart').getContext('2d');
+        if (window.historyChartInstance) {
+          window.historyChartInstance.destroy();
+        }
+        window.historyChartInstance = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'AQI Value',
+              data: values,
+              borderColor: '#4a90e2',
+              fill: true,
+              tension: 0.2,
+              backgroundColor: 'rgba(74, 144, 226, 0.2)',
+              borderWidth: 2
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { display: false }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                title: { display: true, text: 'AQI' }
+              },
+              x: {
+                title: { display: true, text: 'Timestamp' }
+              }
+            }
+          }
+        });
+      });
+    }
+
+    function exportCSV() {
+      let csv = "Timestamp,AQI Value\n";
+      currentHistory.forEach(row => {
+        csv += `"${row.timestamp}",${row.aqi_value}\n`;
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${currentSensorName}_AQI_History.csv`;
+      a.click();
+    }
+
+    function exportPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      doc.setFontSize(16);
+      doc.text(`AQI History Report - ${currentSensorName}`, 10, 10);
+      doc.setFontSize(12);
+      let y = 20;
+
+      currentHistory.forEach((entry, i) => {
+        doc.text(`${entry.timestamp} - AQI: ${entry.aqi_value}`, 10, y);
+        y += 7;
+        if (y > 280) {
+          doc.addPage();
+          y = 10;
+        }
+      });
+
+      doc.save(`${currentSensorName}_AQI_History.pdf`);
+    }
+
+    loadSensors();
+  </script>
+</body>
+</html>

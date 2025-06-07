@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AirQ Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <style>
+    body {
+        background: #e3eef9;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #333;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar navbar-dark bg-primary px-4 py-2">
+    <div class="text-white fw-bold fs-4">AirQ Dashboard</div>
+    <div>
+      <a href="history.html" class="btn btn-outline-light me-2">History</a>
+      <button id="logoutBtn" class="btn btn-light fw-bold">Log Out</button>
+    </div>
+  </header>
+
+  <main class="main-container px-4 py-5">
+    <div class="d-flex justify-content-between flex-wrap mb-4 gap-3">
+      <div>
+        <label class="form-label fw-bold">All Status</label>
+        <select id="statusFilter" class="form-select">
+          <option value="">All</option>
+          <option value="Good">Good</option>
+          <option value="Moderate">Moderate</option>
+          <option value="Unhealthy">Unhealthy</option>
+        </select>
+      </div>
+      <div>
+        <label class="form-label fw-bold">Search location</label>
+        <input type="text" id="locationFilter" class="form-control" placeholder="e.g. Colombo" />
+      </div>
+      <div>
+        <label class="form-label fw-bold">Start Date</label>
+        <input type="date" id="startDate" class="form-control" />
+      </div>
+      <div>
+        <label class="form-label fw-bold">End Date</label>
+        <input type="date" id="endDate" class="form-control" />
+      </div>
+      <div class="d-flex align-items-end">
+        <button id="simulateBtn" class="btn btn-success fw-bold">Simulate AQI Data</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-4">
+        <h5 class="fw-bold">Map View</h5>
+        <div id="map" class="map-container rounded border"></div>
+      </div>
+      <div class="col-md-6">
+        <h5 class="fw-bold">Sensors</h5>
+        <div id="sensorList" class="row g-3"></div>
+      </div>
+    </div>
+
+    <div class="custom-buttons">
+        <a href="all-sensors.html" class="custom-btn">View all Sensors</a>
+        <a href="history.html" class="custom-btn">View all History</a>
+    </div>
+
+  </main>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

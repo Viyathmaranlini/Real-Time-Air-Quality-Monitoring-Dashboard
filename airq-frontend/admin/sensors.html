@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin - Sensors</title>
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+  <div class="admin-container">
+    <aside class="sidebar">
+      <h2>AirQ Admin</h2>
+      <nav>
+        <a href="admin-dashboard.html">Dashboard</a>
+        <a href="users.html">Users</a>
+        <a href="sensors.html" class="active">Sensors</a>
+        <a href="logs.html">System Logs</a>
+        <a href="#" id="adminLogout">Logout</a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <div class="header">
+        <h1>Sensor Management</h1>
+        <div>
+          <input type="text" id="sensorSearch" placeholder="Search sensors..." />
+          <button id="addSensorBtn">+ Add Sensor</button>
+        </div>
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Lat</th>
+            <th>Lng</th>
+            <th>Location</th>
+            <th>Status</th>
+            <th>AQI</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="sensorTableBody">
+          <!-- Sensor rows -->
+        </tbody>
+      </table>
+    </main>
+  </div>
+
+  <!-- Sensor Modal -->
+  <div id="sensorModal" class="modal hidden">
+    <div class="modal-content">
+      <h3 id="sensorModalTitle">Add Sensor</h3>
+      <form id="sensorForm">
+        <input type="hidden" id="sensorId" />
+        <input type="text" id="sensorName" placeholder="Name" required />
+        <input type="text" id="sensorLat" placeholder="Latitude" required />
+        <input type="text" id="sensorLng" placeholder="Longitude" required />
+        <input type="text" id="sensorLocation" placeholder="Location Description" />
+        <button type="submit">Save</button>
+        <button type="button" onclick="closeSensorModal()">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

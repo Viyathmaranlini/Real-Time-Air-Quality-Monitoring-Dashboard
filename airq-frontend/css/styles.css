@@ -1,0 +1,265 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background: #e3eef9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+  }
+  
+  /* Centered container for login/register */
+  .login-container,
+  .register-container {
+    background: #fff;
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    margin: 5rem auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  input,
+  select {
+    padding: 12px;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+  }
+  
+  button {
+    background-color: #2d89ef;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #1b62c6;
+  }
+  
+  p {
+    margin-top: 1rem;
+    text-align: center;
+    color: #666;
+  }
+  
+  a {
+    color: #2d89ef;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* NAVBAR */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4a90e2;
+    padding: 1rem 2rem;
+    color: white;
+  }
+  
+  .navbar .title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .navbar button {
+    background-color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    color: #4a90e2;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* MAIN CONTAINER */
+  .container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  
+  .simulate-btn {
+    background-color: #34a853;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  /* SENSOR CARDS */
+  .card-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .card {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    flex: 1 1 250px;
+  }
+  #map {
+    height: 400px;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+
+  /* MAP CONTAINER */
+  .map-container {
+    height: 400px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto 30px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  /* LOGOUT */
+  .logout-btn {
+    background: white;
+    color: #1976d2;
+    border: 1px solid #1976d2;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* AQI Badges */
+  .badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .badge-good {
+    background-color: #4caf50;
+  }
+  
+  .badge-moderate {
+    background-color: #ff9800;
+  }
+  
+  .badge-unhealthy {
+    background-color: #f44336;
+  }
+  
+  .badge-na {
+    background-color: #999;
+  }
+
+  .filter-bar {
+    display: flex;
+    gap: 10px;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+  }
+  
+  .filter-bar select,
+  .filter-bar input {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  .map-container {
+    width: 100%;
+    height: 400px;
+  }
+  
+  body {
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  #map {
+    height: 400px;
+    width: 100%;
+  }
+  
+  .sensor-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+  }
+  
+  .badge-aqi {
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+  }
+  
+  .badge-good {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .badge-moderate {
+    background-color: #ffc107;
+    color: black;
+  }
+  
+  .badge-unhealthy {
+    background-color: #dc3545;
+    color: white;
+  }
+
+  .custom-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .custom-btn {
+    background-color: #b5ddeb;
+    color: #000;
+    padding: 12px 20px;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .custom-btn:hover {
+    background-color: #a4d1e3;
+  }

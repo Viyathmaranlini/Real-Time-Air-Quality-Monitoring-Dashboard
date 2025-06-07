@@ -1,0 +1,391 @@
+/* Layout */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+  }
+  
+  .admin-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 240px;
+    background-color: #2d3e50;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+  }
+  
+  .sidebar h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .sidebar nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0.5rem 0;
+    padding: 0.6rem 1rem;
+    display: block;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+  
+  .sidebar nav a:hover,
+  .sidebar nav a.active {
+    background-color: #1b2838;
+  }
+  
+  /* Main Content */
+  .admin-main {
+    flex-grow: 1;
+    padding: 2rem;
+    overflow-y: auto;
+  }
+  
+  .admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .admin-header h1 {
+    font-size: 1.8rem;
+    margin: 0;
+  }
+  
+  .admin-header span {
+    font-weight: 500;
+    color: #2d89ef;
+  }
+  
+  /* Stats */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .stat-card {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    text-align: center;
+  }
+  
+  .stat-card h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    color: #555;
+  }
+  
+  .stat-card p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2d3e50;
+  }
+  
+  /* Chart */
+  .chart-section {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+
+  /* Core Admin Layout */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f5f9f9;
+    color: #333;
+  }
+  
+  .admin-container {
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 220px;
+    background-color: #263238;
+    padding: 1rem;
+    color: #fff;
+  }
+  
+  .sidebar h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .sidebar nav a {
+    display: block;
+    color: #b0bec5;
+    text-decoration: none;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+  }
+  
+  .sidebar nav a.active,
+  .sidebar nav a:hover {
+    background-color: #455a64;
+    color: #fff;
+  }
+  
+  /* Main Content */
+  .main-content {
+    flex: 1;
+    padding: 2rem;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .header h1 {
+    margin: 0;
+  }
+  
+  .header button {
+    background-color: #2d89ef;
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  
+  .header button:hover {
+    background-color: #216cc9;
+  }
+  
+  /* Data Table */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .data-table thead {
+    background-color: #eceff1;
+    font-weight: bold;
+  }
+  
+  .data-table th,
+  .data-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .data-table td:last-child {
+    white-space: nowrap;
+  }
+  
+  .data-table button {
+    margin-right: 5px;
+    padding: 4px 8px;
+    border: none;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+  
+  .data-table .edit-btn {
+    background-color: #ffc107;
+    color: #fff;
+  }
+  
+  .data-table .delete-btn {
+    background-color: #e53935;
+    color: #fff;
+  }
+  
+  .data-table button:hover {
+    opacity: 0.9;
+  }
+  
+  /* Modal */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .modal.hidden {
+    display: none;
+  }
+  
+  .modal-content {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .modal-content form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .modal-content input,
+  .modal-content select {
+    margin-bottom: 1rem;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .modal-content button {
+    padding: 10px;
+    margin-top: 0.5rem;
+  }
+  
+  .modal-content button:first-of-type {
+    background-color: #2d89ef;
+    color: white;
+  }
+  
+  .modal-content button:last-of-type {
+    background-color: #ccc;
+    color: #333;
+  }
+
+  /* Modal Background */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(128, 128, 128, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  /* Hide modal by default */
+  .modal.hidden {
+    display: none;
+  }
+  
+  /* Modal Box */
+  .modal-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    width: 400px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Modal Title */
+  .modal-content h3 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  
+  /* Form Inputs */
+  #userForm input,
+  #userForm select {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Save Button */
+  #userForm button[type="submit"] {
+    width: 100%;
+    background-color: #3a77f2;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  /* Cancel Button */
+  #userForm button[type="button"] {
+    width: 100%;
+    background-color: #ccc;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .filter-bar {
+    margin: 1rem 0;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .filter-bar input,
+  .filter-bar select {
+    padding: 0.5rem;
+    font-size: 0.95rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Optional badge styling */
+  .badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 0.85rem;
+  }
+  
+  .badge-online {
+    background-color: #4caf50;
+  }
+  
+  .badge-offline {
+    background-color: #f44336;
+  }
+
+  .filters {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .filters input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }

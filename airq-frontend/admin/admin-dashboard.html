@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel - AirQ</title>
+  <link rel="stylesheet" href="css/admin.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="admin-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>AirQ Admin</h2>
+      <nav>
+        <a href="admin-dashboard.html" class="active">Dashboard</a>
+        <a href="../dashboard.html">Home Dashboard</a>
+        <a href="users.html">Users</a>
+        <a href="sensors.html">Sensors</a>
+        <a href="logs.html">System Logs</a>
+        <a href="#" id="adminLogout">Logout</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      <header class="admin-header">
+        <h1>Admin Dashboard</h1>
+        <span id="adminName">Welcome, Admin</span>
+      </header>
+
+      <section class="stats-grid">
+        <div class="stat-card">
+          <h3>Total Users</h3>
+          <p id="totalUsers">--</p>
+        </div>
+        <div class="stat-card">
+          <h3>Total Sensors</h3>
+          <p id="totalSensors">--</p>
+        </div>
+        <div class="stat-card">
+          <h3>Alerts Issued</h3>
+          <p id="totalAlerts">--</p>
+        </div>
+        <div class="stat-card">
+          <h3>High AQI Events</h3>
+          <p id="highAqiEvents">--</p>
+        </div>
+      </section>
+
+      <section class="chart-section">
+        <canvas id="aqiChart" height="120"></canvas>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
